@@ -136,6 +136,22 @@ const ReactCustomizableProgressbar: FunctionComponent<ReactCustomizableProgressb
                 viewBox={`0 0 ${width} ${width}`}
                 style={{transform: `rotate(${rotate}deg)`}}
             >
+
+
+                <defs>
+                    <filter id="inset-shadow" width="200%" height="200%" fill="#e6e6e6">
+                          <feOffset dy="-1" dx="4"></feOffset>
+                          <feGaussianBlur result="offset-blur" stdDeviation="1"></feGaussianBlur>
+                          <feComposite operator="out" in="SourceGraphic" result="inverse"></feComposite>
+                          <feFlood result="color" flood-color="#8D9091" flood-opacity="0.10"></feFlood>
+                          <feComposite operator="in" in2="inverse" result="shadow" in="color"></feComposite>
+                          <feComponentTransfer in="shadow" result="shadow">
+                          <feFuncA type="linear" slope="4"></feFuncA>
+                              </feComponentTransfer>
+                         <feComposite operator="over" in="shadow" in2="SourceGraphic"></feComposite>
+                    </filter>
+                </defs>
+
                 {trackStrokeWidth! > 0 && (
                     <circle
                         cx={width / 2}
